@@ -36,7 +36,10 @@ class Register extends Component {
     if(this.state.loggedIn){
         return <Navigate  to="/profile"/>
     }
-
+    if(localStorage.getItem('token'))
+	{
+		return <Navigate  to="/profile"/>
+	}
     return (
         <div className="row">
             <div className="jumbotron col-lg-5 offset-lg-4">

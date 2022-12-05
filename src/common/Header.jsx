@@ -8,6 +8,7 @@ import Register from '../components/Register';
 import Trend from '../components/Trend';
 import Forget from '../components/Forget';
 import axios from 'axios';
+import Reset from '../components/Reset';
 
 
 class Header extends Component
@@ -40,6 +41,7 @@ class Header extends Component
                         <Route path="/profile" element={<Profile user={this.state.user}/>} />
                         <Route path="/register" element={<Register user={this.state.user}  setUser={this.setUser}/>} />
                         <Route path="/trends" element={<Trend />} />
+                        <Route path="/reset/:id" element={<Reset />} />
                         <Route path="/forget" element={<Forget />} />
                     </Routes>
                 </div>

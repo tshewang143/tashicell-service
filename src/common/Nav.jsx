@@ -3,7 +3,43 @@ import {BrowserRouter as Router, Routes,Route, Link} from "react-router-dom";
 
 class Nav extends Component
 {
+    state = {
+        loggedout : " "
+    }
+
+    logout = e  => {
+        localStorage.clear();
+        this.props.setUser(null);
+    }
+
     render(){
+        let buttons;
+        let profile;
+        if(localStorage.getItem('token')){
+            buttons = (
+                <div>
+                    <Link className="nav-link" to="" onClick={this.logout}>Logout</Link>
+                </div>
+            )
+            profile = (
+                <div>
+                    <Link className="nav-link" to="/profile">Profile</Link>
+                </div>
+            )
+        }else{
+            buttons = (
+                <div>
+                    <ul className="navbar-nav mr-auto">                   
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/login">Login</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/register">Register</Link>
+                        </li>
+                    </ul>
+                </div>
+            )
+        }
         return (
             <div>
                 <div className="card text-center">
@@ -28,7 +64,7 @@ class Nav extends Component
                             <Link className="nav-link" to="/trends">Trending Top 5 Review </Link><span className="sr-only">(current)</span>
                         </li>                    
                         <li className="nav-item">
-                            <Link className="nav-link" to="/profile">Profile</Link>
+                            {profile}
                         </li>
                         </ul>
                         <form className="form-inline my-2 my-lg-0">
@@ -36,14 +72,7 @@ class Nav extends Component
                         <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                         </form>
                         <span className="nav-text">
-                        <ul className="navbar-nav mr-auto">                   
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/login">Login</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/register">Register</Link>
-                            </li>
-                        </ul>
+                            {buttons}
                         </span>
                     </div>
                 </nav>
